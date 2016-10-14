@@ -9,7 +9,7 @@ make_matrix <- function(v, df){
     dimnames(m) <- list(v,v)
     for (i in 1:ncol(m)){
         for (j in 1:nrow(m)){
-            m[i,j] = dist(rbind(df[,v[i]],df[,v[j]]))
+            m[i,j] <- dist(rbind(df[,v[i]],df[,v[j]]))
         }
     }
     m

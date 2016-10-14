@@ -10,7 +10,7 @@ make_matrix <- function(v, df){
     for (i in 1:ncol(m)){
         for (j in 1:nrow(m)){
             bool <- df[,v[i]]== df[,v[j]]
-            m[i,j] = sum(bool == F)
+            m[i,j] <- sum(bool == F)
         }
     }
     m
