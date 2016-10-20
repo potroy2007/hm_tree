@@ -24,26 +24,26 @@ score <- function(tree, matrix){
         y <- z[[i]][length(z[[i]])]
         total <- total + m[x,y]
     }
-    total
+    pairs <- c(total,tree)
+    pairs
 }
 
 df <- read.table("5node_data.csv", header = TRUE,sep = ",")
 
-columns = 3:7
+columns = 1:5
 for (i in columns){
-    df[[i]][df[[i]] < 50] <- 0
-    df[[i]][df[[i]] > 50] <- 1
+    df[[i]][df[[i]] < 20] <- 0
+    df[[i]][df[[i]] >= 20] <- 1
 }
 
 v <- c("MPP","CMP","GMP","MEP","EryA")
 m <- make_matrix(v, df)
 
 trees <- read.newick(file = "trees.tre")
-trees <- unique(trees)
 trees <- lapply(trees, as.Node)
 
-scores <- lapply(trees, score)
-best_tree <- trees[[which.min(scores)]]
-plot(best_tree)
+pairs <- lapply(trees, score)
+pairs <- pairs[order(sapply(pairs, function(x) x[[1]]))]
+lapply(pairs[1:5], function(x) x[[2]])
 
 proc.time()-ptm

@@ -27,15 +27,15 @@ score <- function(tree, matrix){
     total
 }
 
-df <- read.table("5node_data.csv", header = TRUE,sep = ",")
+df <- read.table("6node_data.csv", header = TRUE,sep = ",")
 
-columns = 3:7
+columns = 3:8
 for (i in columns){
     df[[i]][df[[i]] < 50] <- 0
     df[[i]][df[[i]] > 50] <- 1
 }
 
-v <- c("MPP","CMP","GMP","MEP","EryA")
+v <- c("MPP","CMP","GMP","MEP","EryA","Gn")
 m <- make_matrix(v, df)
 
 trees <- read.newick(file = "trees.tre")
