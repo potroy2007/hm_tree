@@ -1,4 +1,5 @@
 library(igraph)
+library(ape)
 
 check_single_line <- function(n,m){
     mp <- head(m,n-1) # subset matrix
@@ -70,5 +71,5 @@ x9 <- identical_matrix(x,m9)
 tm <- c(x1,x2,x3,x4,x5,x6,x7,x8,x9)
 tm/length(x)
 
-tree <- graph.adjacency(m9)
+tree <- graph.adjacency(m1)
 plot(tree)

@@ -9,7 +9,7 @@ make_matrix <- function(v, df){
     dimnames(m) <- list(v,v)
     for (i in 1:ncol(m)){
         for (j in 1:nrow(m)){
-            m[i,j] <- 1 - cor(df[,v[i]], df[,v[j]], method="spearman")
+            m[i,j] <- round(cor(df[,v[i]], df[,v[j]], method="spearman"),digits = 2)
         }
     }
     m
@@ -29,7 +29,7 @@ score <- function(tree, matrix){
 df <- read.table("5node_data.csv", header = TRUE,sep = ",")
 
 v <- c("MPP","CMP","GMP","MEP","EryA")
-m <- make_matrix(v, df)
+mx <- make_matrix(v, df)
 
 trees <- read.newick(file = "trees.tre")
 trees <- lapply(trees, as.Node)
